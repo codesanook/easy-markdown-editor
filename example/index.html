@@ -6,14 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Example / Preview</title>
+
+    <!-- external dependency libraries-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/darcula.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/highlight.min.js"></script>
+
+    <!--output code-->
     <link rel="stylesheet" href="../dist/easymde.min.css">
     <script src="../dist/easymde.min.js"></script>
 </head>
 
 <body>
-    <textarea></textarea>
+    <h1>Easy MDE</h1>
+    <textarea id="editor"></textarea>
     <script>
-        var easyMDE = new EasyMDE();
+        var easyMDE = new EasyMDE({
+            toolbar: [
+                'bold', 'italic', 'heading', '|', 'quote',
+                {
+                    name: 'upload-image',
+                    action: function customFunction(editor) {
+
+                        alert('Open upload file dialog here')
+                        // get image URL and put to text area via editor object
+                    },
+                    // Search icons https://fontawesome.com/icons?d=gallery
+                    className: 'fa fa-image',
+                    title: 'upload image',
+                },
+                "|", // Separator
+                'side-by-side',
+                'fullscreen',
+            ],
+            element: document.getElementById('editor'),
+            autoDownloadFontAwesome: false,
+            spellChecker: false,
+            renderingConfig: {
+                singleLineBreaks: true,
+                codeSyntaxHighlighting: true,
+            }
+        });
+
     </script>
 </body>
 
